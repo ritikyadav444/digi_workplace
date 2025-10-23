@@ -1,0 +1,35 @@
+<div class="container my-5">
+    <div class="row mb-4">
+        <div class="col">
+            <div class="alert alert-warning" role="alert">
+                <strong>Free Trial</strong> - You are currently on a Free Trial with 0 days left.
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4" *ngFor="let plan of plans">
+            <div class="card plan-card" [ngClass]="{ 'selected': isSelected(plan.id) }">
+                <h5>{{ plan.name }}</h5>
+                <p>{{ plan.price }}</p>
+                <ul class="list-unstyled">
+                    <li *ngFor="let feature of plan.features">
+                        {{ feature }}
+                    </li>
+                </ul>
+                <button class="btn btn-outline-primary" (click)="selectPlan(plan.id)" [disabled]="isSelected(plan.id)">
+                    {{ isSelected(plan.id) ? 'Selected' : 'Select Plan' }}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col text-center">
+            <button class="btn btn-lg" style="background-color: #1B3C53;color: white;"
+                [disabled]="!canProceedToPayment()">
+                Proceed to Payment
+            </button>
+        </div>
+    </div>
+</div>

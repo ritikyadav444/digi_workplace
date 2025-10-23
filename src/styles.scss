@@ -1,1 +1,63 @@
-/* You can add global styles to this file, and also import other style files */
+.ngb-toasts {
+  position: fixed;
+  right: 15px;
+  padding: 10px;
+  z-index: 1660;
+}
+
+.bgsuccess {
+  background-color: #2ab57d;
+  padding:0px 10px;
+  border-radius: 4px 0px 0px 4px;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.bg-success-color {
+  background-color: #aae1cb !important;
+}
+
+.bgsuccess1 {
+  background-color: #fd625e;
+  padding:0px 10px;
+  border-radius: 4px 0px 0px 4px;
+  color: white;
+  border-left-color: #fd625e !important;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.bg-danger-color {
+  background-color: #fec0bf !important;
+}
+
+.bgsuccess2 {
+  background-color: #4ba6ef;
+  padding:0px 10px;
+  color: white;
+  border-radius: 4px 0px 0px 4px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.bg-info-color {
+  background-color: #b7dbf9 !important;
+}
+
+.bgsuccess3 {
+  background-color: #ffbf53;
+  padding:0px 10px;
+  color: white;
+  border-radius: 4px 0px 0px 4px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.bg-warning-color {
+  background-color: #ffe5ba !important;
+}
+
+.curPnt {
+    cursor: pointer;
+}

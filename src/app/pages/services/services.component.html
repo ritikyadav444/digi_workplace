@@ -1,0 +1,37 @@
+<div>
+    <div class="col-12 d-flex align-items-center px-4">
+        <div class="col-11">
+            Services
+        </div>
+        <div class="col-1 d-flex justify-content-end">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                class="curPnt" [ngbTooltip]="'Add Service'">
+                <path
+                    d="M20 14V7C20 5.34315 18.6569 4 17 4H12M20 14L13.5 20M20 14H15.5C14.3954 14 13.5 14.8954 13.5 16V20M13.5 20H7C5.34315 20 4 18.6569 4 17V12"
+                    stroke="#1B3C53" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M7 4V7M7 10V7M7 7H4M7 7H10" stroke="#1B3C53" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </div>
+    </div>
+    <hr class="mt-1 mb-1">
+    <div class="services-container">
+        <div class="card" *ngFor="let card of cardsData">
+            <img [src]="card.image" [alt]="card.title" class="card-img">
+            <div class="card-content">
+                <h3>{{ card.title }}</h3>
+                <p>Starting At {{ card.price }}</p>
+                <div ngbDropdown class="position-absolute top-0 end-0 m-2">
+                    <button ngbDropdownToggle class="btn btn-light btn-sm rounded-circle" style="border: none;">
+                        ⋮
+                    </button>
+                    <div ngbDropdownMenu class="shadow-sm">
+                        <button ngbDropdownItem (click)="actionCard('edit' , card)">Edit</button>
+                        <button ngbDropdownItem (click)="actionCard('delete' , card)">Delete</button>
+                        <button ngbDropdownItem (click)="actionCard('info' ,card)">Info</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
