@@ -1,0 +1,288 @@
+<!-- <div *ngIf="!mobileView">
+    <div class="col-12 d-flex">
+        <div class="container-fluid">
+            <div class="row flex-nowrap">
+                <div class="sidebar d-flex flex-column align-items-center py-3 border-end"
+                    [ngClass]="toggleSize ? 'col-2' : 'col-1' ">
+                    <div class="d-flex justify-content-between align-items-center w-100 px-3 mb-3">
+                        <span *ngIf="toggleSize">IMAGE</span>
+                        <span class="col-2 menu-item" (click)="toggleMenu()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none">
+                                <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke="#000000" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-center menu-item" (click)="chagePage('dashboard')"
+                        [ngClass]="{'active': pageName === 'dashboard'}">
+                        <span class="col-2 d-flex justify-content-start">
+                            <svg width="24" height="24" fill="#1B3C53" viewBox="0 0 24 24">
+                                <path
+                                    d="M11 21H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h6zm2 0h6c1.1 0 2-.9 2-2v-7h-8zm8-11V5c0-1.1-.9-2-2-2h-6v7z" />
+                            </svg>
+                        </span>
+                        <span class="col-6" *ngIf="toggleSize">Dashboard</span>
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-center menu-item" (click)="chagePage('orders')"
+                        [ngClass]="{'active': pageName === 'orders'}">
+                        <span class="col-2 d-flex justify-content-start">
+                            <svg width="24" height="24" fill="#1B3C53" viewBox="0 0 24 24">
+                                <path
+                                    d="M11 21H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h6zm2 0h6c1.1 0 2-.9 2-2v-7h-8zm8-11V5c0-1.1-.9-2-2-2h-6v7z" />
+                            </svg>
+                        </span>
+                        <span class="col-6" *ngIf="toggleSize">Orders</span>
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-center menu-item" (click)="chagePage('clients')"
+                        [ngClass]="{'active': pageName === 'clients'}">
+                        <span class="col-2 d-flex justify-content-start">
+                            <svg width="24" height="24" fill="#1B3C53" viewBox="0 0 24 24">
+                                <path
+                                    d="M11 21H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h6zm2 0h6c1.1 0 2-.9 2-2v-7h-8zm8-11V5c0-1.1-.9-2-2-2h-6v7z" />
+                            </svg>
+                        </span>
+                        <span class="col-6" *ngIf="toggleSize">Clients</span>
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-center menu-item" (click)="chagePage('services')"
+                        [ngClass]="{'active': pageName === 'services'}">
+                        <span class="col-2 d-flex justify-content-start">
+                            <svg width="24" height="24" fill="#1B3C53" viewBox="0 0 24 24">
+                                <path
+                                    d="M11 21H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h6zm2 0h6c1.1 0 2-.9 2-2v-7h-8zm8-11V5c0-1.1-.9-2-2-2h-6v7z" />
+                            </svg>
+                        </span>
+                        <span class="col-6" *ngIf="toggleSize">Services</span>
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-center menu-item" (click)="chagePage('proposals')"
+                        [ngClass]="{'active': pageName === 'proposals'}">
+                        <span class="col-2 d-flex justify-content-start">
+                            <svg width="24" height="24" fill="#1B3C53" viewBox="0 0 24 24">
+                                <path
+                                    d="M11 21H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h6zm2 0h6c1.1 0 2-.9 2-2v-7h-8zm8-11V5c0-1.1-.9-2-2-2h-6v7z" />
+                            </svg>
+                        </span>
+                        <span class="col-6" *ngIf="toggleSize">Proposals</span>
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-center menu-item" (click)="chagePage('invoices')"
+                        [ngClass]="{'active': pageName === 'invoices'}">
+                        <span class="col-2 d-flex justify-content-start">
+                            <svg width="24" height="24" fill="#1B3C53" viewBox="0 0 24 24">
+                                <path
+                                    d="M11 21H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h6zm2 0h6c1.1 0 2-.9 2-2v-7h-8zm8-11V5c0-1.1-.9-2-2-2h-6v7z" />
+                            </svg>
+                        </span>
+                        <span class="col-6" *ngIf="toggleSize">Invoices</span>
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-center menu-item" (click)="chagePage('tickets')"
+                        [ngClass]="{'active': pageName === 'tickets'}">
+                        <span class="col-2 d-flex justify-content-start">
+                            <svg width="24" height="24" fill="#1B3C53" viewBox="0 0 24 24">
+                                <path
+                                    d="M11 21H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h6zm2 0h6c1.1 0 2-.9 2-2v-7h-8zm8-11V5c0-1.1-.9-2-2-2h-6v7z" />
+                            </svg>
+                        </span>
+                        <span class="col-6" *ngIf="toggleSize">Tickets</span>
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-center menu-item" (click)="chagePage('team')"
+                        [ngClass]="{'active': pageName === 'team'}">
+                        <span class="col-2 d-flex justify-content-start">
+                            <svg width="24" height="24" fill="#1B3C53" viewBox="0 0 24 24">
+                                <path
+                                    d="M11 21H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h6zm2 0h6c1.1 0 2-.9 2-2v-7h-8zm8-11V5c0-1.1-.9-2-2-2h-6v7z" />
+                            </svg>
+                        </span>
+                        <span class="col-6" *ngIf="toggleSize">Team</span>
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-center menu-item" (click)="chagePage('integrations')"
+                        [ngClass]="{'active': pageName === 'integrations'}">
+                        <span class="col-2 d-flex justify-content-start">
+                            <svg width="24" height="24" fill="#1B3C53" viewBox="0 0 24 24">
+                                <path
+                                    d="M11 21H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h6zm2 0h6c1.1 0 2-.9 2-2v-7h-8zm8-11V5c0-1.1-.9-2-2-2h-6v7z" />
+                            </svg>
+                        </span>
+                        <span class="col-6" *ngIf="toggleSize">Integrations</span>
+                    </div>
+
+                </div>
+                <div class="col p-0 d-flex flex-column border">
+                    <div class="topbarStat d-flex align-items-center justify-content-center border-bottom">
+                        <div class="col-12 d-flex px-4">
+                            <div class="col">Workspace name</div>
+                            <div class="col d-flex justify-content-end">
+                                <span class="px-4">Checkout Plans</span>
+                                <span class="curPnt" (click)="chagePage('payments')">
+                                    <svg width="24" height="24" viewBox="0 0 24 24">
+                                        <path d="M10 0L9 1L11.2929 3.29289L6.2929 8.29289L7.70711 9.70711L12.7071 4.7071L15 7L16 6V0H10Z"
+                                            fill="white" />
+                                        <path d="M1 2H6V4H3V13H12V10H14V15H1V2Z" fill="white" />
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="topbar d-flex align-items-center justify-content-center border-bottom">
+                        <div class="col-12 d-flex px-4">
+                            <div class="col">Workspace name</div>
+                            <div class="col d-flex justify-content-end">
+                                <span class="px-4">Bell</span>
+                                <span>Icon</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content d-flex flex-grow-1" style="overflow-y: auto;">
+                        <app-pages></app-pages>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="mobileView">
+    this is mobile
+</div> -->
+
+<div *ngIf="!mobileView">
+    <div class="main-container">
+        <div class="container-fluid">
+            <div class="row flex-nowrap">
+                <div class="sidebar d-flex flex-column align-items-center py-3 border-end"
+                    [ngClass]="toggleSize ? 'col-2' : 'col-1' ">
+                    <div class="d-flex justify-content-between align-items-center w-100 px-3 mb-3">
+                        <span *ngIf="toggleSize">IMAGE</span>
+                        <span class="col-2 menu-item" (click)="toggleMenu()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-center menu-item" (click)="chagePage('dashboard')" [ngClass]="{'active': pageName === 'dashboard'}">
+                        <span class="col-2 d-flex justify-content-start">
+                            <svg width="24" height="24" fill="#1B3C53" viewBox="0 0 24 24">
+                                <path d="M11 21H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h6zm2 0h6c1.1 0 2-.9 2-2v-7h-8zm8-11V5c0-1.1-.9-2-2-2h-6v7z" />
+                            </svg>
+                        </span>
+                        <span class="col-6" *ngIf="toggleSize">Dashboard</span>
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-center menu-item" (click)="chagePage('orders')" [ngClass]="{'active': pageName === 'orders'}">
+                        <span class="col-2 d-flex justify-content-start">
+                            <svg width="24" height="24" fill="#1B3C53" viewBox="0 0 24 24">
+                                <path d="M11 21H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h6zm2 0h6c1.1 0 2-.9 2-2v-7h-8zm8-11V5c0-1.1-.9-2-2-2h-6v7z" />
+                            </svg>
+                        </span>
+                        <span class="col-6" *ngIf="toggleSize">Orders</span>
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-center menu-item" (click)="chagePage('clients')" [ngClass]="{'active': pageName === 'clients'}">
+                        <span class="col-2 d-flex justify-content-start">
+                            <svg width="24" height="24" fill="#1B3C53" viewBox="0 0 24 24">
+                                <path d="M11 21H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h6zm2 0h6c1.1 0 2-.9 2-2v-7h-8zm8-11V5c0-1.1-.9-2-2-2h-6v7z" />
+                            </svg>
+                        </span>
+                        <span class="col-6" *ngIf="toggleSize">Clients</span>
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-center menu-item" (click)="chagePage('services')" [ngClass]="{'active': pageName === 'services'}">
+                        <span class="col-2 d-flex justify-content-start">
+                            <svg width="24" height="24" fill="#1B3C53" viewBox="0 0 24 24">
+                                <path d="M11 21H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h6zm2 0h6c1.1 0 2-.9 2-2v-7h-8zm8-11V5c0-1.1-.9-2-2-2h-6v7z" />
+                            </svg>
+                        </span>
+                        <span class="col-6" *ngIf="toggleSize">Services</span>
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-center menu-item" (click)="chagePage('proposals')" [ngClass]="{'active': pageName === 'proposals'}">
+                        <span class="col-2 d-flex justify-content-start">
+                            <svg width="24" height="24" fill="#1B3C53" viewBox="0 0 24 24">
+                                <path d="M11 21H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h6zm2 0h6c1.1 0 2-.9 2-2v-7h-8zm8-11V5c0-1.1-.9-2-2-2h-6v7z" />
+                            </svg>
+                        </span>
+                        <span class="col-6" *ngIf="toggleSize">Proposals</span>
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-center menu-item" (click)="chagePage('invoices')" [ngClass]="{'active': pageName === 'invoices'}">
+                        <span class="col-2 d-flex justify-content-start">
+                            <svg width="24" height="24" fill="#1B3C53" viewBox="0 0 24 24">
+                                <path d="M11 21H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h6zm2 0h6c1.1 0 2-.9 2-2v-7h-8zm8-11V5c0-1.1-.9-2-2-2h-6v7z" />
+                            </svg>
+                        </span>
+                        <span class="col-6" *ngIf="toggleSize">Invoices</span>
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-center menu-item" (click)="chagePage('tickets')" [ngClass]="{'active': pageName === 'tickets'}">
+                        <span class="col-2 d-flex justify-content-start">
+                            <svg width="24" height="24" fill="#1B3C53" viewBox="0 0 24 24">
+                                <path d="M11 21H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h6zm2 0h6c1.1 0 2-.9 2-2v-7h-8zm8-11V5c0-1.1-.9-2-2-2h-6v7z" />
+                            </svg>
+                        </span>
+                        <span class="col-6" *ngIf="toggleSize">Tickets</span>
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-center menu-item" (click)="chagePage('team')" [ngClass]="{'active': pageName === 'team'}">
+                        <span class="col-2 d-flex justify-content-start">
+                            <svg width="24" height="24" fill="#1B3C53" viewBox="0 0 24 24">
+                                <path d="M11 21H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h6zm2 0h6c1.1 0 2-.9 2-2v-7h-8zm8-11V5c0-1.1-.9-2-2-2h-6v7z" />
+                            </svg>
+                        </span>
+                        <span class="col-6" *ngIf="toggleSize">Team</span>
+                    </div>
+
+                    <div class="col-12 d-flex justify-content-center menu-item" (click)="chagePage('integrations')" [ngClass]="{'active': pageName === 'integrations'}">
+                        <span class="col-2 d-flex justify-content-start">
+                            <svg width="24" height="24" fill="#1B3C53" viewBox="0 0 24 24">
+                                <path d="M11 21H5c-1.1 0-2-.9-2-2V5c0-1.1.9-2 2-2h6zm2 0h6c1.1 0 2-.9 2-2v-7h-8zm8-11V5c0-1.1-.9-2-2-2h-6v7z" />
+                            </svg>
+                        </span>
+                        <span class="col-6" *ngIf="toggleSize">Integrations</span>
+                    </div>
+
+                </div>
+                <div class="main-content-wrapper p-0">
+                    <div class="topbarStat d-flex align-items-center justify-content-center border-bottom">
+                        <div class="col-12 d-flex px-4">
+                            <div class="col">Workspace name</div>
+                            <div class="col d-flex justify-content-end">
+                                <span class="px-4">Checkout Plans</span>
+                                <span class="curPnt" (click)="chagePage('payments')">
+                                    <svg width="24" height="24" viewBox="0 0 24 24">
+                                        <path d="M10 0L9 1L11.2929 3.29289L6.2929 8.29289L7.70711 9.70711L12.7071 4.7071L15 7L16 6V0H10Z" fill="white" />
+                                        <path d="M1 2H6V4H3V13H12V10H14V15H1V2Z" fill="white" />
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="topbar d-flex align-items-center justify-content-center border-bottom">
+                        <div class="col-12 d-flex px-4">
+                            <div class="col">Workspace name</div>
+                            <div class="col d-flex justify-content-end">
+                                <span class="px-4">Bell</span>
+                                <span>Icon</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <app-pages></app-pages>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="mobileView">
+    this is mobile
+</div>

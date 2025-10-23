@@ -1,0 +1,18 @@
+.plan-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  transition: background-color 0.3s;
+}
+
+.selected {
+  background-color: #1B3C53;
+  color: white;
+}
+
+button:disabled {
+  background-color: #d6d6d6;
+  border-color: #d6d6d6;
+}
