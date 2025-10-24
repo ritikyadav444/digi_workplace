@@ -70,7 +70,7 @@
     </div>
 
     <div class="row p-2">
-      <div class="col-6 mb-3">
+      <div class="col-6 mb-3" *ngIf="modalName == 'Create Order'">
         <div class="form-floating">
           <input
             type="text"
@@ -83,7 +83,7 @@
         </div>
       </div>
 
-      <div class="col-6 mb-3">
+      <div class="col-6 mb-3" *ngIf="modalName == 'Create Order'">
         <div class="form-floating">
           <input
             type="text"
@@ -96,7 +96,7 @@
         </div>
       </div>
 
-      <div class="col-6 mb-3">
+      <div class="col-6 mb-3" *ngIf="modalName == 'Create Order'">
         <div class="form-floating">
           <input
             type="text"
@@ -135,7 +135,7 @@
         </div>
       </div>
 
-      <div class="col-6 mb-3">
+      <div class="col-3 mb-3" *ngIf="modalName == 'Create Order'">
         <div class="form-floating">
           <input
             type="date"
@@ -148,7 +148,7 @@
         </div>
       </div>
 
-      <div class="col-6 mb-3">
+      <div class="col-3 mb-3" *ngIf="modalName == 'Create Order'">
         <div class="form-floating">
           <input
             type="date"
@@ -158,6 +158,19 @@
             formControlName="endTime"
           />
           <label for="endTime" class="modal-form-label">End Date</label>
+        </div>
+      </div>
+
+      <div class="col-6 mb-3" *ngIf="modalName == 'Update Order'">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control modal-form-input"
+            id="status"
+            placeholder="Status"
+            formControlName="status"
+          />
+          <label for="status" class="modal-form-label">Status</label>
         </div>
       </div>
 
