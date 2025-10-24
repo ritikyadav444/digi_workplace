@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -37,8 +38,10 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    FormsModule,
     NgbTooltipModule,
     NgbDropdownModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes),
   ],
   exports: [

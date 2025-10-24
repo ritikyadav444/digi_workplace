@@ -5,7 +5,7 @@
         </div>
         <div class="col-1 d-flex justify-content-end">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                class="curPnt" [ngbTooltip]="'Add Service'">
+                class="curPnt" [ngbTooltip]="'Add Service'" (click)="openAddModal(addmodalser , 'Create Service')">
                 <path
                     d="M20 14V7C20 5.34315 18.6569 4 17 4H12M20 14L13.5 20M20 14H15.5C14.3954 14 13.5 14.8954 13.5 16V20M13.5 20H7C5.34315 20 4 18.6569 4 17V12"
                     stroke="#1B3C53" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -26,7 +26,7 @@
                         ⋮
                     </button>
                     <div ngbDropdownMenu class="shadow-sm">
-                        <button ngbDropdownItem (click)="actionCard('edit' , card)">Edit</button>
+                        <button ngbDropdownItem (click)="actionCard('Update Service' , card , addmodalser)">Edit</button>
                         <button ngbDropdownItem (click)="actionCard('delete' , card)">Delete</button>
                         <button ngbDropdownItem (click)="actionCard('info' ,card)">Info</button>
                     </div>
@@ -35,3 +35,137 @@
         </div>
     </div>
 </div>
+
+<ng-template #addmodalser let-modal>
+  <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
+    <div class="modal-header col-12" style="padding:8px 14px;">
+      <div class="modalHead col-10 px-0" id="myModalLabel">{{modalName}}</div>
+      <div class="col-2 d-flex align-items-center justify-content-end">
+        <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="row p-2">
+      <div class="col-12 mb-3">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control modal-form-input"
+            id="serviceName"
+            placeholder="Service Name"
+            formControlName="serviceName"
+          />
+          <label for="serviceName" class="modal-form-label">Service Name</label>
+        </div>
+      </div>
+
+      <div class="col-4 mb-3">
+        <div class="form-floating">
+          <input
+            type="number"
+            class="form-control modal-form-input"
+            id="minValue"
+            placeholder="Min"
+            formControlName="min"
+          />
+          <label for="minValue" class="modal-form-label">Min</label>
+        </div>
+      </div>
+
+      <div class="col-4 mb-3">
+        <div class="form-floating">
+          <input
+            type="number"
+            class="form-control modal-form-input"
+            id="maxValue"
+            placeholder="Max"
+            formControlName="max"
+          />
+          <label for="maxValue" class="modal-form-label">Max</label>
+        </div>
+      </div>
+
+      <div class="col-4 mb-3">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control modal-form-input"
+            id="currency"
+            placeholder="Currency"
+            formControlName="currency"
+          />
+          <label for="currency" class="modal-form-label">Currency</label>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="col-12 mb-3">
+              <div class="form-floating">
+                <input
+                  type="text"
+                  class="form-control modal-form-input"
+                  id="pricingType"
+                  placeholder="Select Pricing Type"
+                  formControlName="pricingType"
+                />
+                <label for="pricingType" class="modal-form-label">Select Pricing Type</label>
+              </div>
+            </div>
+
+            <div class="row mb-2">
+              <span>Timeframe</span>
+              <div class="col-6 mb-3">
+                <div class="form-floating">
+                  <input
+                    type="text"
+                    class="form-control modal-form-input"
+                    id="timeframeStart"
+                    placeholder="Start"
+                    formControlName="startTime"
+                  />
+                  <label for="timeframeStart" class="modal-form-label">Start</label>
+                </div>
+              </div>
+              <div class="col-6 mb-3">
+                <div class="form-floating">
+                  <input
+                    type="text"
+                    class="form-control modal-form-input"
+                    id="timeframeEnd"
+                    placeholder="End"
+                    formControlName="endTime"
+                  />
+                  <label for="timeframeEnd" class="modal-form-label">End</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 mb-3">
+            <div class="form-floating">
+                <input type="file" class="form-control modal-form-input" id="image" (change)="onFileSelected($event)" />
+            </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <!-- <ckeditor
+              [editor]="Editor"
+              formControlName="description"
+            ></ckeditor> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" [disabled]="serviceForm.invalid">
+        Save
+      </button>
+    </div>
+  </form>
+</ng-template>
+

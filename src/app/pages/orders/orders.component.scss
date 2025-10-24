@@ -1,0 +1,51 @@
+.table-container {
+  padding: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f9f9f9;
+  font-weight: bold;
+}
+
+.badge.ongoing {
+  background-color: #e0f0ff;
+  color: #007bff;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 13px;
+}
+
+.actions button {
+  margin: 0 3px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
+.btn-info {
+  background-color: #6f42c1;
+  color: white;
+}
+
+.btn-warning {
+  background-color: #ffb703;
+  color: white;
+}
+
+.btn-danger {
+  background-color: #d62828;
+  color: white;
+}

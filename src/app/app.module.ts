@@ -6,7 +6,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PagesModule } from './pages/pages.module';
 import { ToastsContainer } from './services/toaster/toaster.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 @NgModule({
   declarations: [AppComponent, NavbarComponent],
   imports: [
@@ -14,7 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     PagesModule,
     NgbModule,
-    ToastsContainer
+    ToastsContainer,
   ],
   providers: [],
   bootstrap: [AppComponent],

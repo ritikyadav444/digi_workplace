@@ -1,1 +1,188 @@
-<p>orders works!</p>
+<div>
+    <div class="col-12 d-flex align-items-center px-4">
+        <div class="col-11">
+            Orders
+        </div>
+        <div class="col-1 d-flex justify-content-end">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                class="curPnt" [ngbTooltip]="'Add Order'" (click)="openAddModal(addmodalser , 'Create Order')">
+                <path
+                    d="M20 14V7C20 5.34315 18.6569 4 17 4H12M20 14L13.5 20M20 14H15.5C14.3954 14 13.5 14.8954 13.5 16V20M13.5 20H7C5.34315 20 4 18.6569 4 17V12"
+                    stroke="#1B3C53" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M7 4V7M7 10V7M7 7H4M7 7H10" stroke="#1B3C53" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </div>
+    </div>
+    <hr class="mt-1 mb-1">
+
+    <div class="table-container">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Client Name</th>
+                    <th>Order Name</th>
+                    <th>Assigned To</th>
+                    <th>Status</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let order of orders">
+                    <td>{{ order.orderID }}</td>
+                    <td>{{ order.clientName }}</td>
+                    <td>{{ order.orderName }}</td>
+                    <td>{{ order.assigneeName }}</td>
+                    <td>
+                        <span class="badge ongoing">{{ order.status }}</span>
+                    </td>
+                    <td>{{ order.startDate }}</td>
+                    <td>{{ order.endDate }}</td>
+                    <td class="actions">
+                        <button class="btn btn-info btn-sm">i</button>
+                        <button class="btn btn-warning btn-sm" (click)="actionCard('Update Order' , order , addmodalser)">✏️</button>
+                        <button class="btn btn-danger btn-sm">🗑️</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<ng-template #addmodalser let-modal>
+  <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+    <div class="modal-header col-12" style="padding:8px 14px;">
+      <div class="modalHead col-10 px-0" id="myModalLabel">{{ modalName }}</div>
+      <div class="col-2 d-flex align-items-center justify-content-end">
+        <button
+          type="button"
+          class="close"
+          (click)="modal.dismiss('Cross click')"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="row p-2">
+      <div class="col-6 mb-3">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control modal-form-input"
+            id="serviceName"
+            placeholder="Service Name"
+            formControlName="serviceName"
+          />
+          <label for="serviceName" class="modal-form-label">Service Name</label>
+        </div>
+      </div>
+
+      <div class="col-6 mb-3">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control modal-form-input"
+            id="clientName"
+            placeholder="Client Name"
+            formControlName="clientName"
+          />
+          <label for="clientName" class="modal-form-label">Client Name</label>
+        </div>
+      </div>
+
+      <div class="col-6 mb-3">
+        <div class="form-floating">
+          <input
+            type="text"
+            class="form-control modal-form-input"
+            id="assigneeName"
+            placeholder="Assignee Name"
+            formControlName="assigneeName"
+          />
+          <label for="assigneeName" class="modal-form-label">Assigned To</label>
+        </div>
+      </div>
+
+      <div class="col-3 mb-3">
+        <div class="form-floating">
+          <input
+            type="number"
+            class="form-control modal-form-input"
+            id="quantity"
+            placeholder="Quantity"
+            formControlName="quantity"
+          />
+          <label for="quantity" class="modal-form-label">Quantity</label>
+        </div>
+      </div>
+
+      <div class="col-3 mb-3">
+        <div class="form-floating">
+          <input
+            type="number"
+            class="form-control modal-form-input"
+            id="budget"
+            placeholder="Budget"
+            formControlName="budget"
+          />
+          <label for="budget" class="modal-form-label">Budget</label>
+        </div>
+      </div>
+
+      <div class="col-6 mb-3">
+        <div class="form-floating">
+          <input
+            type="date"
+            class="form-control modal-form-input"
+            id="startDate"
+            placeholder="Start Date"
+            formControlName="startDate"
+          />
+          <label for="startDate" class="modal-form-label">Start Date</label>
+        </div>
+      </div>
+
+      <div class="col-6 mb-3">
+        <div class="form-floating">
+          <input
+            type="date"
+            class="form-control modal-form-input"
+            id="endTime"
+            placeholder="End Date"
+            formControlName="endTime"
+          />
+          <label for="endTime" class="modal-form-label">End Date</label>
+        </div>
+      </div>
+
+      <div class="col-12 mb-3">
+        <div class="form-floating">
+          <textarea
+            class="form-control modal-form-input"
+            id="note"
+            placeholder="Note"
+            formControlName="note"
+            style="height: 100px"
+          ></textarea>
+          <label for="note" class="modal-form-label">Notes</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="orderForm.invalid"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</ng-template>
