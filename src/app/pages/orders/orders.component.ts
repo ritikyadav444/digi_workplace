@@ -9,6 +9,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class OrdersComponent {
   modalName: any;
+  container:boolean = true
   orderForm!: FormGroup;
   constructor(public modalService: NgbModal, private fb: FormBuilder) {}
 
@@ -189,7 +190,8 @@ export class OrdersComponent {
       console.log('delete came');
     }
     if (type === 'info') {
-      console.log('info came');
+      console.log('infoooooo')
+      this.container = false
     }
   }
 

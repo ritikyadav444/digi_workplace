@@ -1,201 +1,245 @@
 <div>
-    <div class="col-12 d-flex align-items-center px-4">
-        <div class="col-11">
-            Orders
+    <div>
+        <div class="col-12 d-flex align-items-center px-4">
+            <div class="col-11 d-flex align-items-center">
+                <span (click)="container = true" class="curPnt">
+                    Orders
+                </span>
+                <span *ngIf="container === false">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="blue" width="24" height="24" viewBox="0 0 32 32"
+                        transform="rotate(180)">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0" />
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+                        <g id="SVGRepo_iconCarrier">
+                            <path d="M 26 6 L 6 15.21875 L 6 16.78125 L 26 26 L 26 23.84375 L 9.46875 16 L 26 8.15625 Z" />
+                        </g>
+                    </svg>
+                    Order Detail
+                </span>
+            </div>
+            <div class="col-1 d-flex justify-content-end">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    class="curPnt" [ngbTooltip]="'Add Order'" (click)="openAddModal(addmodalser , 'Create Order')">
+                    <path
+                        d="M20 14V7C20 5.34315 18.6569 4 17 4H12M20 14L13.5 20M20 14H15.5C14.3954 14 13.5 14.8954 13.5 16V20M13.5 20H7C5.34315 20 4 18.6569 4 17V12"
+                        stroke="#1B3C53" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M7 4V7M7 10V7M7 7H4M7 7H10" stroke="#1B3C53" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
         </div>
-        <div class="col-1 d-flex justify-content-end">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                class="curPnt" [ngbTooltip]="'Add Order'" (click)="openAddModal(addmodalser , 'Create Order')">
-                <path
-                    d="M20 14V7C20 5.34315 18.6569 4 17 4H12M20 14L13.5 20M20 14H15.5C14.3954 14 13.5 14.8954 13.5 16V20M13.5 20H7C5.34315 20 4 18.6569 4 17V12"
-                    stroke="#1B3C53" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                <path d="M7 4V7M7 10V7M7 7H4M7 7H10" stroke="#1B3C53" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-            </svg>
+        <hr class="mt-1 mb-1">
+        <div class="table-container" *ngIf="container === true">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Client Name</th>
+                        <th>Order Name</th>
+                        <th>Assigned To</th>
+                        <th>Status</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let order of orders">
+                        <td>{{ order.orderID }}</td>
+                        <td>{{ order.clientName }}</td>
+                        <td>{{ order.orderName }}</td>
+                        <td>{{ order.assigneeName }}</td>
+                        <td>
+                            <span class="badge ongoing">{{ order.status }}</span>
+                        </td>
+                        <td>{{ order.startDate }}</td>
+                        <td>{{ order.endDate }}</td>
+                        <td class="actions d-flex align-items-center">
+                            <span  (click)="actionCard('info' , order)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" [ngbTooltip]="'Order Info'">
+                                    <path d="M12 17V11" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                    <circle cx="1" cy="1" r="1" transform="matrix(1 0 0 -1 11 9)" fill="#1C274C" />
+                                    <path
+                                        d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7"
+                                        stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+                                </svg>
+                            </span>
+                            <span (click)="actionCard('Update Order' , order , addmodalser)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 -0.5 25 25"
+                                    fill="none" [ngbTooltip]="'Edit Order'">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M17.7 5.12758L19.266 6.37458C19.4172 6.51691 19.5025 6.71571 19.5013 6.92339C19.5002 7.13106 19.4128 7.32892 19.26 7.46958L18.07 8.89358L14.021 13.7226C13.9501 13.8037 13.8558 13.8607 13.751 13.8856L11.651 14.3616C11.3755 14.3754 11.1356 14.1751 11.1 13.9016V11.7436C11.1071 11.6395 11.149 11.5409 11.219 11.4636L15.193 6.97058L16.557 5.34158C16.8268 4.98786 17.3204 4.89545 17.7 5.12758Z"
+                                        stroke="#000000" stroke-width="1.5" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path
+                                        d="M12.033 7.61865C12.4472 7.61865 12.783 7.28287 12.783 6.86865C12.783 6.45444 12.4472 6.11865 12.033 6.11865V7.61865ZM9.23301 6.86865V6.11865L9.23121 6.11865L9.23301 6.86865ZM5.50001 10.6187H6.25001L6.25001 10.617L5.50001 10.6187ZM5.50001 16.2437L6.25001 16.2453V16.2437H5.50001ZM9.23301 19.9937L9.23121 20.7437H9.23301V19.9937ZM14.833 19.9937V20.7437L14.8348 20.7437L14.833 19.9937ZM18.566 16.2437H17.816L17.816 16.2453L18.566 16.2437ZM19.316 12.4937C19.316 12.0794 18.9802 11.7437 18.566 11.7437C18.1518 11.7437 17.816 12.0794 17.816 12.4937H19.316ZM15.8863 6.68446C15.7282 6.30159 15.2897 6.11934 14.9068 6.2774C14.5239 6.43546 14.3417 6.87397 14.4998 7.25684L15.8863 6.68446ZM18.2319 9.62197C18.6363 9.53257 18.8917 9.13222 18.8023 8.72777C18.7129 8.32332 18.3126 8.06792 17.9081 8.15733L18.2319 9.62197ZM8.30001 16.4317C7.8858 16.4317 7.55001 16.7674 7.55001 17.1817C7.55001 17.5959 7.8858 17.9317 8.30001 17.9317V16.4317ZM15.767 17.9317C16.1812 17.9317 16.517 17.5959 16.517 17.1817C16.517 16.7674 16.1812 16.4317 15.767 16.4317V17.9317ZM12.033 6.11865H9.23301V7.61865H12.033V6.11865ZM9.23121 6.11865C6.75081 6.12461 4.7447 8.13986 4.75001 10.6203L6.25001 10.617C6.24647 8.96492 7.58269 7.62262 9.23481 7.61865L9.23121 6.11865ZM4.75001 10.6187V16.2437H6.25001V10.6187H4.75001ZM4.75001 16.242C4.7447 18.7224 6.75081 20.7377 9.23121 20.7437L9.23481 19.2437C7.58269 19.2397 6.24647 17.8974 6.25001 16.2453L4.75001 16.242ZM9.23301 20.7437H14.833V19.2437H9.23301V20.7437ZM14.8348 20.7437C17.3152 20.7377 19.3213 18.7224 19.316 16.242L17.816 16.2453C17.8195 17.8974 16.4833 19.2397 14.8312 19.2437L14.8348 20.7437ZM19.316 16.2437V12.4937H17.816V16.2437H19.316ZM14.4998 7.25684C14.6947 7.72897 15.0923 8.39815 15.6866 8.91521C16.2944 9.44412 17.1679 9.85718 18.2319 9.62197L17.9081 8.15733C17.4431 8.26012 17.0391 8.10369 16.6712 7.7836C16.2897 7.45165 16.0134 6.99233 15.8863 6.68446L14.4998 7.25684ZM8.30001 17.9317H15.767V16.4317H8.30001V17.9317Z"
+                                        fill="#000000" />
+                                </svg>
+                            </span>
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="24" height="24" [ngbTooltip]="'Delete Order'" viewBox="0 0 24 24"
+                                    version="1.1">
+                                    <title>delete_fill</title>
+                                    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <g id="System" transform="translate(-336.000000, -48.000000)"
+                                            fill-rule="nonzero">
+                                            <g id="delete_fill" transform="translate(336.000000, 48.000000)">
+                                                <path
+                                                    d="M24,0 L24,24 L0,24 L0,0 L24,0 Z M12.5934901,23.257841 L12.5819402,23.2595131 L12.5108777,23.2950439 L12.4918791,23.2987469 L12.4918791,23.2987469 L12.4767152,23.2950439 L12.4056548,23.2595131 C12.3958229,23.2563662 12.3870493,23.2590235 12.3821421,23.2649074 L12.3780323,23.275831 L12.360941,23.7031097 L12.3658947,23.7234994 L12.3769048,23.7357139 L12.4804777,23.8096931 L12.4953491,23.8136134 L12.4953491,23.8136134 L12.5071152,23.8096931 L12.6106902,23.7357139 L12.6232938,23.7196733 L12.6232938,23.7196733 L12.6266527,23.7031097 L12.609561,23.275831 C12.6075724,23.2657013 12.6010112,23.2592993 12.5934901,23.257841 L12.5934901,23.257841 Z M12.8583906,23.1452862 L12.8445485,23.1473072 L12.6598443,23.2396597 L12.6498822,23.2499052 L12.6498822,23.2499052 L12.6471943,23.2611114 L12.6650943,23.6906389 L12.6699349,23.7034178 L12.6699349,23.7034178 L12.678386,23.7104931 L12.8793402,23.8032389 C12.8914285,23.8068999 12.9022333,23.8029875 12.9078286,23.7952264 L12.9118235,23.7811639 L12.8776777,23.1665331 C12.8752882,23.1545897 12.8674102,23.1470016 12.8583906,23.1452862 L12.8583906,23.1452862 Z M12.1430473,23.1473072 C12.1332178,23.1423925 12.1221763,23.1452606 12.1156365,23.1525954 L12.1099173,23.1665331 L12.0757714,23.7811639 C12.0751323,23.7926639 12.0828099,23.8018602 12.0926481,23.8045676 L12.108256,23.8032389 L12.3092106,23.7104931 L12.3186497,23.7024347 L12.3186497,23.7024347 L12.3225043,23.6906389 L12.340401,23.2611114 L12.337245,23.2485176 L12.337245,23.2485176 L12.3277531,23.2396597 L12.1430473,23.1473072 Z"
+                                                    id="MingCute" fill-rule="nonzero">
+                                                </path>
+                                                <path
+                                                    d="M20,5 C20.5523,5 21,5.44772 21,6 C21,6.55228 20.5523,7 20,7 L19.0001,7 L18.9975,7.07129 L18.9975,7.07129 L18.0638,20.1425 C17.9891,21.1891 17.1182,22 16.0689,22 L7.93116,22 C6.88189,22 6.011,21.1891 5.93624,20.1425 L5.00258,7.07129 C5.00088,7.04738 5.00002,7.02361 5,7 L4,7 C3.44772,7 3,6.55228 3,6 C3,5.44772 3.44772,5 4,5 L20,5 Z M14,2 C14.5523,2 15,2.44772 15,3 C15,3.55228 14.5523,4 14,4 L10,4 C9.44772,4 9,3.55228 9,3 C9,2.44772 9.44772,2 10,2 L14,2 Z"
+                                                    id="形状" fill="red">
+                                                </path>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+        <div class="table-container" *ngIf="container === false">
+            <div class="order-container">
+  <div class="header">
+    <span class="status">Order <span class="status-badge">Ongoing</span></span>
+    <div class="order-info">
+      <span>Created On: <strong>Oct 23, 2025</strong></span>
+      <span>Due: <strong>Oct 23, 2025</strong></span>
     </div>
-    <hr class="mt-1 mb-1">
+  </div>
 
-    <div class="table-container">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Order ID</th>
-                    <th>Client Name</th>
-                    <th>Order Name</th>
-                    <th>Assigned To</th>
-                    <th>Status</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
+  <div class="details">
+    <div class="to-client">
+      <h3>To</h3>
+      <div>
+        <strong>Client Name:</strong> Ritik1
+      </div>
+      <div>
+        <strong>Assignee Name:</strong> Unnamed client
+      </div>
+    </div>
 
-            <tbody>
-                <tr *ngFor="let order of orders">
-                    <td>{{ order.orderID }}</td>
-                    <td>{{ order.clientName }}</td>
-                    <td>{{ order.orderName }}</td>
-                    <td>{{ order.assigneeName }}</td>
-                    <td>
-                        <span class="badge ongoing">{{ order.status }}</span>
-                    </td>
-                    <td>{{ order.startDate }}</td>
-                    <td>{{ order.endDate }}</td>
-                    <td class="actions">
-                        <button class="btn btn-info btn-sm">i</button>
-                        <button class="btn btn-warning btn-sm" (click)="actionCard('Update Order' , order , addmodalser)">✏️</button>
-                        <button class="btn btn-danger btn-sm">🗑️</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="amount-details">
+      <h3>Amount Details</h3>
+      <div>
+        <strong>Budget:</strong> 2
+      </div>
+      <div>
+        <strong>Quantity:</strong> 2
+      </div>
+      <div>
+        <strong>Total:</strong> 4
+      </div>
+    </div>
+  </div>
+
+  <div class="action-buttons">
+    <button class="task-button">Tasks</button>
+    <button class="edit-button">Edit</button>
+    <button class="delete-button">Delete</button>
+  </div>
+</div>
+
+        </div>
     </div>
 </div>
 
 <ng-template #addmodalser let-modal>
-  <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
-    <div class="modal-header col-12" style="padding:8px 14px;">
-      <div class="modalHead col-10 px-0" id="myModalLabel">{{ modalName }}</div>
-      <div class="col-2 d-flex align-items-center justify-content-end">
-        <button
-          type="button"
-          class="close"
-          (click)="modal.dismiss('Cross click')"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    </div>
-
-    <div class="row p-2">
-      <div class="col-6 mb-3" *ngIf="modalName == 'Create Order'">
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control modal-form-input"
-            id="serviceName"
-            placeholder="Service Name"
-            formControlName="serviceName"
-          />
-          <label for="serviceName" class="modal-form-label">Service Name</label>
+    <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+        <div class="modal-header col-12" style="padding:8px 14px;">
+            <div class="modalHead col-10 px-0" id="myModalLabel">{{ modalName }}</div>
+            <div class="col-2 d-flex align-items-center justify-content-end">
+                <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
         </div>
-      </div>
 
-      <div class="col-6 mb-3" *ngIf="modalName == 'Create Order'">
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control modal-form-input"
-            id="clientName"
-            placeholder="Client Name"
-            formControlName="clientName"
-          />
-          <label for="clientName" class="modal-form-label">Client Name</label>
+        <div class="row p-2">
+            <div class="col-6 mb-3" *ngIf="modalName == 'Create Order'">
+                <div class="form-floating">
+                    <input type="text" class="form-control modal-form-input" id="serviceName" placeholder="Service Name"
+                        formControlName="serviceName" />
+                    <label for="serviceName" class="modal-form-label">Service Name</label>
+                </div>
+            </div>
+
+            <div class="col-6 mb-3" *ngIf="modalName == 'Create Order'">
+                <div class="form-floating">
+                    <input type="text" class="form-control modal-form-input" id="clientName" placeholder="Client Name"
+                        formControlName="clientName" />
+                    <label for="clientName" class="modal-form-label">Client Name</label>
+                </div>
+            </div>
+
+            <div class="col-6 mb-3" *ngIf="modalName == 'Create Order'">
+                <div class="form-floating">
+                    <input type="text" class="form-control modal-form-input" id="assigneeName"
+                        placeholder="Assignee Name" formControlName="assigneeName" />
+                    <label for="assigneeName" class="modal-form-label">Assigned To</label>
+                </div>
+            </div>
+
+            <div class="col-3 mb-3">
+                <div class="form-floating">
+                    <input type="number" class="form-control modal-form-input" id="quantity" placeholder="Quantity"
+                        formControlName="quantity" />
+                    <label for="quantity" class="modal-form-label">Quantity</label>
+                </div>
+            </div>
+
+            <div class="col-3 mb-3">
+                <div class="form-floating">
+                    <input type="number" class="form-control modal-form-input" id="budget" placeholder="Budget"
+                        formControlName="budget" />
+                    <label for="budget" class="modal-form-label">Budget</label>
+                </div>
+            </div>
+
+            <div class="col-3 mb-3" *ngIf="modalName == 'Create Order'">
+                <div class="form-floating">
+                    <input type="date" class="form-control modal-form-input" id="startDate" placeholder="Start Date"
+                        formControlName="startDate" />
+                    <label for="startDate" class="modal-form-label">Start Date</label>
+                </div>
+            </div>
+
+            <div class="col-3 mb-3" *ngIf="modalName == 'Create Order'">
+                <div class="form-floating">
+                    <input type="date" class="form-control modal-form-input" id="endTime" placeholder="End Date"
+                        formControlName="endTime" />
+                    <label for="endTime" class="modal-form-label">End Date</label>
+                </div>
+            </div>
+
+            <div class="col-6 mb-3" *ngIf="modalName == 'Update Order'">
+                <div class="form-floating">
+                    <input type="text" class="form-control modal-form-input" id="status" placeholder="Status"
+                        formControlName="status" />
+                    <label for="status" class="modal-form-label">Status</label>
+                </div>
+            </div>
+
+            <div class="col-12 mb-3">
+                <div class="form-floating">
+                    <textarea class="form-control modal-form-input" id="note" placeholder="Note" formControlName="note"
+                        style="height: 100px"></textarea>
+                    <label for="note" class="modal-form-label">Notes</label>
+                </div>
+            </div>
         </div>
-      </div>
 
-      <div class="col-6 mb-3" *ngIf="modalName == 'Create Order'">
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control modal-form-input"
-            id="assigneeName"
-            placeholder="Assignee Name"
-            formControlName="assigneeName"
-          />
-          <label for="assigneeName" class="modal-form-label">Assigned To</label>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" [disabled]="orderForm.invalid">
+                Save
+            </button>
         </div>
-      </div>
-
-      <div class="col-3 mb-3">
-        <div class="form-floating">
-          <input
-            type="number"
-            class="form-control modal-form-input"
-            id="quantity"
-            placeholder="Quantity"
-            formControlName="quantity"
-          />
-          <label for="quantity" class="modal-form-label">Quantity</label>
-        </div>
-      </div>
-
-      <div class="col-3 mb-3">
-        <div class="form-floating">
-          <input
-            type="number"
-            class="form-control modal-form-input"
-            id="budget"
-            placeholder="Budget"
-            formControlName="budget"
-          />
-          <label for="budget" class="modal-form-label">Budget</label>
-        </div>
-      </div>
-
-      <div class="col-3 mb-3" *ngIf="modalName == 'Create Order'">
-        <div class="form-floating">
-          <input
-            type="date"
-            class="form-control modal-form-input"
-            id="startDate"
-            placeholder="Start Date"
-            formControlName="startDate"
-          />
-          <label for="startDate" class="modal-form-label">Start Date</label>
-        </div>
-      </div>
-
-      <div class="col-3 mb-3" *ngIf="modalName == 'Create Order'">
-        <div class="form-floating">
-          <input
-            type="date"
-            class="form-control modal-form-input"
-            id="endTime"
-            placeholder="End Date"
-            formControlName="endTime"
-          />
-          <label for="endTime" class="modal-form-label">End Date</label>
-        </div>
-      </div>
-
-      <div class="col-6 mb-3" *ngIf="modalName == 'Update Order'">
-        <div class="form-floating">
-          <input
-            type="text"
-            class="form-control modal-form-input"
-            id="status"
-            placeholder="Status"
-            formControlName="status"
-          />
-          <label for="status" class="modal-form-label">Status</label>
-        </div>
-      </div>
-
-      <div class="col-12 mb-3">
-        <div class="form-floating">
-          <textarea
-            class="form-control modal-form-input"
-            id="note"
-            placeholder="Note"
-            formControlName="note"
-            style="height: 100px"
-          ></textarea>
-          <label for="note" class="modal-form-label">Notes</label>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal-footer">
-      <button
-        type="submit"
-        class="btn btn-primary"
-        [disabled]="orderForm.invalid"
-      >
-        Save
-      </button>
-    </div>
-  </form>
+    </form>
 </ng-template>
