@@ -6,8 +6,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PagesModule } from './pages/pages.module';
 import { ToastsContainer } from './services/toaster/toaster.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NoAuthPageComponent } from './no-auth-page/no-auth-page.component';
 @NgModule({
-  declarations: [AppComponent, NavbarComponent],
+  declarations: [AppComponent, NavbarComponent, NoAuthPageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
